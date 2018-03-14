@@ -19,20 +19,35 @@ $("#sizePicker").submit(function() {
     makeGrid(height, width);
   }
 
-  // The page will not refresh because of this event
   event.preventDefault();
 });
 
-// When size is submitted by the user, call makeGrid()
+//Color the grid
+$("#pixelCanvas").on("click", "td", function() {
+  let elementToBeColored = $("." + this.className);
+  elementToBeColored.css("background-color", color);
+
+  event.preventDefault();
+});
+
+//Information to execute when page is loaded
+$(function(){
+  color = $("#colorPicker").val();
+
+  let height = $("#inputHeight").val();
+  let width = $("#inputWidth").val();
+  
+  makeGrid(height, width);
+})
 
 function makeGrid(height, width) {
   $("#pixelCanvas").empty();
 
   for (let i = 1; i <= height; i++) {
-    let row = $("<tr></tr>");
+    let row = $(`<tr class="row${i}"></tr>`);
     let cols = null;
     for (let j = 1; j <= width; j++) {
-      cols += "<td>&nbsp;</td>";
+      cols += `<td class="row${i}colum${j}">&nbsp;</td>`;
     }
     row.append(cols);
 
