@@ -3,9 +3,6 @@ let color = null;
 // Select color input
 $("#colorPicker").change(function() {
   color = $("#colorPicker").val();
-
-  // Color is taken in hexadecimal
-  // alert(`color: ${color}`);
 });
 
 // Select size input
